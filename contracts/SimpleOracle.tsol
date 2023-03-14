@@ -1,0 +1,28 @@
+// SPDX-License-Identifier: UNLICENSED
+pragma ever-solidity >= 0.62.0;
+
+import "./interfaces/ISimpleOracle.tsol";
+import "./abstract/Ownable.tsol";
+import "./abstract/Cashback.tsol";
+
+contract SimpleOracle is ISimpleOracle, Ownable, Cashback {
+    uint16 static   nonce;
+    string internal _content;
+    uint64 internal _updatedAt = now;
+
+    constructor(address owner) Ownable(owner) public {}
+
+    function store(string content) public override onlyOwner reservable cashback {
+        string oldValue = _content;
+        uint64 oldUpdatedAt = _updatedAt;
+
+        _content = content;
+        _updatedAt = now;
+
+        emit SimpleOracleUpdated(address(this), oldValue, oldUpdatedAt, _content, _updatedAt);
+    }
+
+    function read() public override view returns (string content, uint64 updatedAt) {
+        return (_content, _updatedAt);
+    }
+}

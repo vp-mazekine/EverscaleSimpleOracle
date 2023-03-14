@@ -1,0 +1,91 @@
+{
+	"ABI version": 2,
+	"version": "2.2",
+	"header": ["time"],
+	"functions": [
+		{
+			"name": "constructor",
+			"inputs": [
+				{"name":"owner","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "store",
+			"inputs": [
+				{"name":"content","type":"string"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "read",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"content","type":"string"},
+				{"name":"updatedAt","type":"uint64"}
+			]
+		},
+		{
+			"name": "owner",
+			"inputs": [
+				{"name":"answerId","type":"uint32"}
+			],
+			"outputs": [
+				{"name":"value0","type":"address"}
+			]
+		},
+		{
+			"name": "renounceOwnership",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "transferOwnership",
+			"inputs": [
+				{"name":"newOwner","type":"address"}
+			],
+			"outputs": [
+			]
+		}
+	],
+	"data": [
+		{"key":1,"name":"nonce","type":"uint16"}
+	],
+	"events": [
+		{
+			"name": "OwnershipTransferred",
+			"inputs": [
+				{"name":"previousOwner","type":"address"},
+				{"name":"newOwner","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "SimpleOracleUpdated",
+			"inputs": [
+				{"name":"oracle","type":"address"},
+				{"name":"oldContent","type":"string"},
+				{"name":"oldUpdatedAt","type":"uint64"},
+				{"name":"newContent","type":"string"},
+				{"name":"newUpdatedAt","type":"uint64"}
+			],
+			"outputs": [
+			]
+		}
+	],
+	"fields": [
+		{"name":"_pubkey","type":"uint256"},
+		{"name":"_timestamp","type":"uint64"},
+		{"name":"_constructorFlag","type":"bool"},
+		{"name":"_owner","type":"address"},
+		{"name":"nonce","type":"uint16"},
+		{"name":"_content","type":"string"},
+		{"name":"_updatedAt","type":"uint64"}
+	]
+}

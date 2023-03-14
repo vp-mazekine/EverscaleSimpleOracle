@@ -1,0 +1,10 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
+pragma ever-solidity >= 0.62.0;
+
+library BaseErrorCodes {
+    uint16 constant NOT_OWNER                = 1000;
+    uint16 constant ZERO_ADDRESS             = 1001;
+    uint16 constant SELF_OWNERSHIP           = 1007;
+    uint16 constant PARAMETER_COUNT_MISMATCH = 3000;
+}

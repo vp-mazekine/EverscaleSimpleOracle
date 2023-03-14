@@ -1,0 +1,29 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
+pragma ever-solidity >= 0.62.0;
+
+import "@broxus/contracts/contracts/libraries/MsgFlag.tsol";
+import "../libraries/Utils.tsol";
+
+/// @title  Contract with cashback
+/// Returns all not reserved funds to sender after executing the payable function
+abstract contract Cashback {
+    /// Reserves all funds except the absolute minimum required to cover contract costs
+    modifier reservable() virtual {
+        tvm.rawReserve(Utils._reserve(), 0);
+        _;
+    }
+
+    /// Sends back the change after performing the call
+    modifier cashback {
+        _;
+        msg.sender.transfer({value: 0, flag: MsgFlag.ALL_NOT_RESERVED, bounce: false});
+    }
+
+    /// Sends back the change after performing the call to the indicated receiver
+    /// @param  _receiver   Receiver of the change
+    modifier cashbackTo(address _receiver) {
+        _;
+        _receiver.transfer({value: 0, flag: MsgFlag.ALL_NOT_RESERVED, bounce: false});
+    }
+}

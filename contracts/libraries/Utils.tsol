@@ -1,0 +1,17 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
+pragma ever-solidity >= 0.62.0;
+
+import "./BaseErrorCodes.tsol";
+import "./Gas.tsol";
+
+library Utils {
+    function _reserve() internal virtual returns (uint128) {
+        return math.max(address(this).balance - msg.value, Gas.CONTRACT_MIN_BALANCE);
+    }
+
+    struct UniversalMeta {
+        uint64  callId;
+        address returnGasTo;
+    }
+}

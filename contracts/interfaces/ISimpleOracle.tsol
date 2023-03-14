@@ -1,0 +1,9 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+pragma ever-solidity >= 0.62.0;
+
+interface ISimpleOracle {
+    function store(string content) external;
+    function read() external view returns (string content, uint64 updatedAt);
+
+    event SimpleOracleUpdated(address oracle, string oldContent, uint64 oldUpdatedAt, string newContent, uint64 newUpdatedAt);
+}
